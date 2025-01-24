@@ -35,4 +35,4 @@ const Student = sequelize.define("students", {
   }
 });
 
-export { sequelize, Student }
+export { Student }

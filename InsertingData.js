@@ -1,5 +1,4 @@
-import Sequelize from "sequelize";
-import { sequelize, Student } from "./Initialization.js";
+import { Student } from "./Initialization.js";
 
 Student.sync({ alter: true }).then(() => {
   return Student.bulkCreate([
