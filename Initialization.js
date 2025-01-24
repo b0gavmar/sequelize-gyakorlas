@@ -35,7 +35,7 @@ const Student = sequelize.define("students", {
   },
 });
 
-Student.sync({ alter: true }).then(() => {
+Student.sync({ alter: true, force: true }).then(() => {
   return Student.bulkCreate([
     {
       student_id: 1,
