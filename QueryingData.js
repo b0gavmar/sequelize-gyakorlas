@@ -1,4 +1,4 @@
-import {Student, sequelize} from "./Initialization.js";
+import { Student, sequelize } from "./Initialization.js";
 
 //elso
 Student.sync({ alter: true })
@@ -14,27 +14,38 @@ Student.sync({ alter: true })
   })
   .then((data) => {
     data.forEach((element) => {
-      console.log(element.toJSON());
+      //console.log(element.toJSON());
+      console.log(
+        "Diákok nevei:",
+        studentsQuery.map((student) => student.name)
+      );
     });
   })
   .catch((err) => {
     console.log(`Error: ${err.message}`);
   });
-/*
-  Student.sync({alter:true})
-  .then(()=>{
+
+//masodik
+Student.sync({ alter: true })
+  .then(() => {
     return Student.findAll({
-        attributes: [
-            [sequelize.fn("SUM", sequelize.col("name").Count()), "num_students"],
-        ],
-        group: "school_year"
+      attributes: [
+        "school_year",
+        [Sequelize.fn("COUNT", Sequelize.col("student_id")), "num_students"],
+      ],
+      group: ["school_year"],
     });
   })
   .then((data) => {
     data.forEach((element) => {
-      console.log(element.toJSON());
+      //console.log(element.toJSON());
+      onsole.log(
+        `Évfolyam: ${count.school_year}, Tanulók száma: ${count.get(
+          "num_students"
+        )}`
+      );
     });
   })
   .catch((err) => {
     console.log(`Error: ${err.message}`);
-  });*/
+  });
