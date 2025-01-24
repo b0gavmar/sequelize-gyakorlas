@@ -1,4 +1,5 @@
 import Sequelize from "sequelize";
+
 const { DataTypes } = Sequelize;
 
 const sequelize = new Sequelize({
@@ -6,7 +7,7 @@ const sequelize = new Sequelize({
   storage: "./data/database.sqlite",
 });
 
-const users = sequelize.define("users", {
+const Student = sequelize.define("students", {
   student_id: {
     type: INTEGER,
     primaryKey: true,
@@ -33,3 +34,5 @@ const users = sequelize.define("users", {
     default: true,
   }
 });
+
+export { sequelize, Student }
