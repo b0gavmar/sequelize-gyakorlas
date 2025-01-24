@@ -20,7 +20,7 @@ Student.sync({ alter: true })
   .catch((err) => {
     console.log(`Error: ${err.message}`);
   });
-
+/*
   Student.sync({alter:true})
   .then(()=>{
     return Student.findAll({
@@ -37,4 +37,4 @@ Student.sync({ alter: true })
   })
   .catch((err) => {
     console.log(`Error: ${err.message}`);
-  });
+  });*/
