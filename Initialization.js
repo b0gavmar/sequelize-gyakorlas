@@ -9,12 +9,12 @@ const sequelize = new Sequelize({
 
 const Student = sequelize.define("students", {
   student_id: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
   name: {
-    type: VARCHAR(255),
+    type: DataTypes.STRING(255),
     allowNull: false,
     validate: {
       min: 4,
@@ -22,17 +22,64 @@ const Student = sequelize.define("students", {
     },
   },
   favorite_class: {
-    type: VARCHAR(255),
+    type: DataTypes.STRING(255),
     default: "Computer Science",
   },
   school_year: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   has_language_examination: {
-    type: TINYINT,
+    type: DataTypes.TINYINT,
     default: true,
-  }
+  },
 });
 
-export { Student }
+Student.sync({ alter: true }).then(() => {
+  return Student.bulkCreate([
+    {
+
+      name: "Béla",
+      favorite_class: "Matek",
+      school_year: 12,
+      has_language_examination: true,
+    },
+    {
+
+      name: "Anna",
+      favorite_class: "Irodalom",
+      school_year: 10,
+      has_language_examination: false,
+    },
+    {
+
+      name: "Gábor",
+      favorite_class: "Fizika",
+      school_year: 11,
+      has_language_examination: true,
+    },
+    {
+
+      name: "Katalin",
+      favorite_class: "Történelem",
+      school_year: 9,
+      has_language_examination: false,
+    },
+    {
+
+      name: "Péter",
+      favorite_class: "Biológia",
+      school_year: 12,
+      has_language_examination: true,
+    },
+    {
+
+      name: "Zsófia",
+      favorite_class: "Kémia",
+      school_year: 10,
+      has_language_examination: true,
+    },
+  ]);
+});
+
+export {sequelize, Student};
